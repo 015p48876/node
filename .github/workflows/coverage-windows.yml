@@ -2,31 +2,16 @@ name: Concurrency Test
 
 on:
   workflow_dispatch:
-    inputs:
-      concurrency:
-        description: 'Number of concurrent jobs'
-        required: false
-        default: '5'
 
 jobs:
   concurrency-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        concurrency: [1, 2, 5, 10, 20] # 你可以自定义要测试的并发数
+        concurrency: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] # 你可以自定义要测试的并发数
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          # 如果不是 Python，请替换为你的依赖安装命令
+      # - name: Checkout code
+      #   uses: actions/checkout@v4
 
       - name: Run concurrency test
         run: |
